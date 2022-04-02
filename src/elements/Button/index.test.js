@@ -34,7 +34,6 @@ describe("Testing button", () => {
         <Button href="/src/pages/ListPage.js" type="link"></Button>
       </Router>
     );
-
     expect(container.querySelector("a")).toBeInTheDocument();
   });
 });

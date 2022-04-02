@@ -5,6 +5,14 @@ import propTypes from "prop-types";
 const Button = (props) => {
   const className = [props.className];
 
+  props.isPrimary &&
+    className.push("bg-blue-600 px-5 py-2 text-white rounded-md");
+  props.isBlock && className.push("block w-full");
+  props.isLight &&
+    className.push("bg-gray-200 px-5 py-2 text-gray-700 rounded-md");
+  props.type === "link" && className.push("hover:underline");
+  props.isInlineBlock && className.push("inline-block");
+
   const onClick = () => {
     if (props.onClick) props.onClick();
   };
@@ -12,7 +20,7 @@ const Button = (props) => {
   // if button have props isDisable or isLoading
   if (props.isDisabled || props.isLoading) {
     if (props.isDisabled) {
-      className.push("bg-gray-200 text-gray-700");
+      className.push("bg-gray-200 text-gray-700 px-5 py-2 text-center");
     }
     return (
       <span className={className.join(" ")} style={props.style}>
@@ -39,8 +47,9 @@ const Button = (props) => {
           href={props.href}
           className={className.join(" ")}
           style={props.style}
+          target="blank"
         >
-          props.children
+          {props.children}
         </a>
       );
     }
@@ -74,9 +83,11 @@ Button.propTypes = {
   className: propTypes.string,
   isDisabled: propTypes.bool,
   isPrimary: propTypes.bool,
+  isLight: propTypes.bool,
   isLoading: propTypes.bool,
   isBlock: propTypes.bool,
   isExternal: propTypes.bool,
+  isInlineBlock: propTypes.bool,
 };
 
 export default Button;
