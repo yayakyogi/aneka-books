@@ -7,9 +7,9 @@ const Button = (props) => {
 
   props.isPrimary &&
     className.push("bg-blue-600 px-5 py-2 text-white rounded-md");
-  props.isBlock && className.push("block w-full");
   props.isLight &&
     className.push("bg-gray-200 px-5 py-2 text-gray-700 rounded-md");
+  props.isBlock && className.push("block w-full");
   props.type === "link" && className.push("hover:underline");
   props.isInlineBlock && className.push("inline-block");
 
