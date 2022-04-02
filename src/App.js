@@ -1,8 +1,15 @@
+import DetailPage from "pages/DetailPage";
+import ListPage from "pages/ListPage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Coba TailwindCSS</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<ListPage />}></Route>
+        <Route exact path="/detail" element={<DetailPage />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
