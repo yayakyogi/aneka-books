@@ -7,7 +7,6 @@ const ListPage = () => {
   return (
     <>
       <Navbar />
-      <div className="px-8"></div>
     </>
   );
 };
