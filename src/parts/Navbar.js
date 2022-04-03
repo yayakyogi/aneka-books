@@ -1,11 +1,36 @@
-import React from "react";
-import InputText from "elements/InputText";
-import Title from "elements/Title";
-import ProfileDummy from "assets/images/img_dummy.jpg";
 import IcShoppingChart from "assets/icons/ic_shopping_cart.png";
 import Button from "elements/Button";
+import InputText from "elements/InputText";
+import Title from "elements/Title";
+import React from "react";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const NavMenu = (props) => {
+    return (
+      <div className="flex items-center">
+        <Button type="link" href="/history">
+          <img
+            src={IcShoppingChart}
+            width={props.isMobile ? 25 : 30}
+            height={props.isMobile ? 25 : 30}
+            alt="Icon shopping cart"
+          />
+        </Button>
+        <div className="ml-4">
+          <span className="text-xs font-light block">Balance</span>
+          <span className="text-sn font-medium">Rp. 100.000</span>
+        </div>
+      </div>
+    );
+  };
+
+  if (props.isCenter) {
+    return (
+      <div className="bg-white 2xl:px-72 xl:px-56 lg:px-20 md:px-10 px-2 border-b-2 border-gray-100 h-20 flex justify-center items-center">
+        <Title />
+      </div>
+    );
+  }
   return (
     <nav className="bg-white 2xl:px-72 xl:px-56 lg:px-20 md:px-10 px-2 border-b-2 border-gray-100 md:h-20 h-36">
       {/* show on dekstop */}
@@ -20,51 +45,14 @@ const Navbar = () => {
             className="md:inline hidden bg-gray-100 px-4 py-2 w-96 rounded-md focus:outline-none focus:ring-1 ring-slate-400"
           />
         </form>
-        <div className="flex items-center">
-          <Button type="link" href="/chart">
-            <img
-              src={IcShoppingChart}
-              width={30}
-              height={30}
-              alt="Icon shopping cart"
-            />
-          </Button>
-          <div style={{ width: 20 }} />
-          <Button type="link" href="/chart">
-            <img
-              src={ProfileDummy}
-              width={40}
-              height={40}
-              alt="profile"
-              className="rounded-full"
-            />
-          </Button>
-        </div>
+        <NavMenu />
       </div>
 
       {/* show on mobile */}
       <div className="md:hidden block xl:px-56 lg:px-20 md:px-10 px-5 pt-3">
         <div className="flex items-center justify-between w-full">
-          <div>
-            <Button type="link" href="/profile">
-              <img
-                src={ProfileDummy}
-                width={35}
-                height={35}
-                alt="profile"
-                className="rounded-full"
-              />
-            </Button>
-          </div>
           <Title />
-          <Button type="link" href="/chart">
-            <img
-              src={IcShoppingChart}
-              width={25}
-              height={25}
-              alt="Icon shopping cart"
-            />
-          </Button>
+          <NavMenu isMobile />
         </div>
         <form className="pt-6">
           <InputText

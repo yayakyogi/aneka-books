@@ -6,7 +6,7 @@ const Bookcard = (props) => {
   const { author, title, price, imageUrl } = props;
   return (
     <Button
-      className="mt-3 bg-white shadow rounded-md p-2 border-2 border-gray-100 hover:shadow-xl hover:scale-110 duration-200"
+      className="bookcard mt-3 bg-white shadow rounded-md p-2 border-2 border-gray-100 hover:shadow-xl hover:scale-110 duration-200"
       onClick={() => console.log("Go to detail page")}
     >
       <img src={imageUrl} alt="cover" className="md:w-56 w-40" />
