@@ -2,9 +2,27 @@ import IcShoppingChart from "assets/icons/ic_shopping_cart.png";
 import Button from "elements/Button";
 import InputText from "elements/InputText";
 import Title from "elements/Title";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { changePage } from "redux/actions/page";
+import { formatRupiah } from "utils/formatRupiah";
+import { GetBalance } from "utils/geBalance";
 
 const Navbar = (props) => {
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const submitForm = () => {
+    dispatch(changePage(0));
+    navigate(`/search/${search}`);
+  };
+
   const NavMenu = (props) => {
     return (
       <div className="flex items-center">
@@ -18,7 +36,9 @@ const Navbar = (props) => {
         </Button>
         <div className="ml-4">
           <span className="text-xs font-light block">Balance</span>
-          <span className="text-sn font-medium">Rp. 100.000</span>
+          <span className="text-sn font-medium">
+            Rp. {formatRupiah(GetBalance().toString())}
+          </span>
         </div>
       </div>
     );
@@ -36,12 +56,12 @@ const Navbar = (props) => {
       {/* show on dekstop */}
       <div className="md:flex hidden justify-between items-center">
         <Title />
-        <form className="pt-5">
+        <form className="pt-5" onSubmit={submitForm}>
           <InputText
             name="search"
+            value={search}
             placeholder="Search product, title and author"
-            onChange={(value) => console.log(value)}
-            value=""
+            onChange={(value) => onChange(value)}
             className="md:inline hidden bg-gray-100 px-4 py-2 w-96 rounded-md focus:outline-none focus:ring-1 ring-slate-400"
           />
         </form>
@@ -54,13 +74,13 @@ const Navbar = (props) => {
           <Title />
           <NavMenu isMobile />
         </div>
-        <form className="pt-6">
+        <form className="pt-5" onSubmit={submitForm}>
           <InputText
             name="search"
+            value={search}
             placeholder="Search product, title and author"
-            onChange={(value) => console.log(value)}
-            value=""
-            className=" bg-gray-100 px-4 py-2 w-full rounded-md focus:outline-none focus:ring-1 ring-slate-400"
+            onChange={(value) => onChange(value)}
+            className="md:hidden inline bg-gray-100 px-4 py-2 w-full rounded-md focus:outline-none focus:ring-1 ring-slate-400"
           />
         </form>
       </div>

@@ -2,20 +2,24 @@ import Breadcrumb from "elements/Breadcrumb";
 import CheckoutList from "parts/CheckoutList";
 import Navbar from "parts/Navbar";
 import React from "react";
+import { getData } from "utils/localStorage";
 
-const Payments = () => {
+const PaymentPage = () => {
+  const dataCheckout = getData("checkout");
+
   const breadcrumb = [
     { pageTitle: "Home", pageHref: "/" },
-    { pageTitle: "Book Details", pageHref: "/detail" },
+    { pageTitle: "Book Details", pageHref: `/detail/${dataCheckout.bookId}` },
     { pageTitle: "Payments", pageHref: "" },
   ];
+
   return (
     <>
       <Navbar isCenter />
       <Breadcrumb data={breadcrumb} />
-      <CheckoutList />
+      <CheckoutList checkout={dataCheckout} />
     </>
   );
 };
 
-export default Payments;
+export default PaymentPage;

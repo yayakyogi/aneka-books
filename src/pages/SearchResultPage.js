@@ -1,17 +1,14 @@
-import React, { useEffect, useRef } from "react";
 import Footer from "parts/Footer";
-import Hero from "parts/Hero";
 import ListBookSection from "parts/ListBookSection";
 import Navbar from "parts/Navbar";
-
-import { fetchPage } from "redux/actions/page";
-import { useSelector, useDispatch } from "react-redux";
 import Pagination from "parts/Pagination";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { fetchPage } from "redux/actions/page";
 
-const ListPage = () => {
-  // useRef to make scrool smooth
-  const refListBookSection = useRef(null);
-  // page state to show data books by page
+const SearchResultPage = () => {
+  const { q } = useParams();
   const page = useSelector((state) => state.page);
   // call useDispatch to take action
   const dispatch = useDispatch();
@@ -26,11 +23,11 @@ const ListPage = () => {
     // call function fetchPage to trigger API
     dispatch(
       fetchPage(
-        `/volumes?q=technologies&startIndex=${startIndex}&maxResult=10`,
+        `/volumes?q=${q}&startIndex=${startIndex}&maxResult=10`,
         "listbook"
       )
     );
-  }, [startIndex]); // refresh page every startIndex change value
+  }, [startIndex]);
 
   if (!page.listbook) {
     return (
@@ -41,17 +38,13 @@ const ListPage = () => {
   }
 
   return (
-    <div>
+    <>
       <Navbar />
-      <Hero refListBookSection={refListBookSection} />
-      <ListBookSection
-        refListBookSection={refListBookSection}
-        data={page.listbook}
-      />
+      <ListBookSection isPageSearch search={q} data={page.listbook} />
       <Pagination />
       <Footer />
-    </div>
+    </>
   );
 };
 
-export default ListPage;
+export default SearchResultPage;

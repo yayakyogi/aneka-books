@@ -20,7 +20,7 @@ const Hero = (props) => {
           <p className="text-md sm:text-lg md:text-xl text-gray-500 font-thin mt-5 md:mt-8">
             "--Stephen King"
           </p>
-          <p className="text-lg sm:text-xl lg:text-2xl font-light text-gray-300 mt-3 md:mt-5">
+          <p className="text-lg sm:text-xl lg:text-2xl font-light text-gray-400 mt-3 md:mt-5">
             We provide what you need to add to a wider knowledge. It's time to
             start reading.
           </p>

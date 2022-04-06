@@ -54,12 +54,7 @@ const Button = (props) => {
       );
     }
     return (
-      <Link
-        to={props.href}
-        className={className.join("")}
-        style={props.style}
-        onClick={onClick}
-      >
+      <Link to={props.href} className={className.join("")} onClick={onClick}>
         {props.children}
       </Link>
     );

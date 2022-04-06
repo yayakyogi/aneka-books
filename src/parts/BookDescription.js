@@ -1,4 +1,5 @@
 import React from "react";
+import parse from "html-react-parser";
 
 const BookDescription = (props) => {
   const { data } = props;
@@ -7,41 +8,62 @@ const BookDescription = (props) => {
     return (
       <div className="w-60">
         <h3 className="font-medium text-sm">{props.label}</h3>
-        <h5 className="text-lg font-normal text-gray-500">{props.value}</h5>
+        <h5 className="text-md font-normal text-gray-500">{props.value}</h5>
       </div>
     );
   }
 
   return (
     <div className="w-full md:w-80 lg:w-1/2">
-      <h3 className="text-md text-gray-500 mt-3 md:mt-0">Yayak Yogi</h3>
-      <h1 className="text-3xl text-gray-900 font-bold">Judul Buku</h1>
+      <h3 className="text-md text-gray-500 mt-3 md:mt-0">
+        {data.volumeInfo.authors}
+      </h3>
+      <h1 className="text-3xl text-gray-900 font-bold">
+        {data.volumeInfo.title}
+      </h1>
       <h4 className="font-medium mt-3">Description</h4>
       <p className="text-gray-500">
-        Bagaimana akhir dari pertarungan antara "Iblis Penidur" Enmu melawan
-        Tanjiro yang melancarkan jurus pamungkas Hinokami Kagura `Hekira no
-        Ten`!? Namun, tiba-tiba saja sosok baru muncul di hadapan Tanjiro!
-        Enbashira Kyojuro Rengoku pun beraksi. Seperti apakah takdir yang
-        terpampang di hadapan Tanjiro setelah mendengar kata-kata yang diucapkan
-        orang
+        {data.volumeInfo.description === undefined
+          ? "Description not available"
+          : parse(data.volumeInfo.description)}
       </p>
       <h4 className="font-medium mt-5 mb-2">Detail</h4>
-      <div className="flex justify-start items-center">
-        <DetailBookSection label="Jumlah Halaman" value="200" />
-        <DetailBookSection label="Penerbit" value="Execmedia" />
+      <div className="flex justify-start items-center mt-3">
+        <DetailBookSection
+          label="Page Count"
+          value={data.volumeInfo.pageCount}
+        />
+        <DetailBookSection
+          label="Publisher"
+          value={data.volumeInfo.publisher}
+        />
       </div>
-      <div className="flex justify-start items-center">
-        <DetailBookSection label="Tanggal Terbit" value="24 Jan 2022" />
-        <DetailBookSection label="Berat" value="0.2 kg" />
+      <div className="flex justify-start items-center mt-3">
+        <DetailBookSection
+          label="Published Date"
+          value={data.volumeInfo.publishedDate}
+        />
+        <DetailBookSection label="Language" value={data.volumeInfo.language} />
       </div>
-      <div className="flex justify-start items-center">
-        <DetailBookSection label="ISBN" value="1982912890" />
-        <DetailBookSection label="Lebar" value="12.0 cm" />
-      </div>
-      <div className="flex justify-start items-center">
-        <DetailBookSection label="Bahasa" value="Indonesia" />
-        <DetailBookSection label="Panjang" value="18.0 cm" />
-      </div>
+      <h1
+        className={`font-medium text-sm ${
+          data.volumeInfo.industryIdentifiers ? "my-3" : "mt-3"
+        }`}
+      >
+        ISBN
+      </h1>
+      {data.volumeInfo.industryIdentifiers == null && (
+        <p className="text-gray-500">not found</p>
+      )}
+      {data.volumeInfo.industryIdentifiers?.map((item, index) => {
+        return (
+          <DetailBookSection
+            key={index}
+            label={item.type}
+            value={item.identifier}
+          />
+        );
+      })}
     </div>
   );
 };

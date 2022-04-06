@@ -1,8 +1,18 @@
 import React from "react";
 import propTypes from "prop-types";
 import Button from "elements/Button";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { changePage } from "redux/actions/page";
 
 const Breadcrumb = (props) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const restPagination = (pageHref) => {
+    dispatch(changePage(0));
+    navigate(pageHref);
+  };
+
   const className = [
     "breadcrumb inline-flex items-center space-x-1 md:space-x-3",
     props.className,
@@ -25,7 +35,7 @@ const Breadcrumb = (props) => {
                 {index === props.data.length - 1 ? (
                   item.pageTitle
                 ) : (
-                  <Button type="link" href={item.pageHref}>
+                  <Button onClick={() => restPagination(item.pageHref)}>
                     {item.pageTitle}
                   </Button>
                 )}
