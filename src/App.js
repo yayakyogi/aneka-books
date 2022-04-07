@@ -11,7 +11,7 @@ import HistoryPage from "pages/HistoryPage";
 import SuccessPage from "pages/SuccessPage";
 import SearchResultPage from "pages/SearchResultPage";
 import ClearAllData from "pages/ClearAllData";
-import Page404 from "pages/404";
+import Page404 from "pages/page404";
 
 function App() {
   return (
