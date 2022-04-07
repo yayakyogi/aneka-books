@@ -1,4 +1,5 @@
 import Breadcrumb from "elements/Breadcrumb";
+import LoadingContent from "elements/LoadingContent";
 import BookDescription from "parts/BookDescription";
 import CardCheckout from "parts/CardCheckout";
 import Footer from "parts/Footer";
@@ -57,8 +58,8 @@ const DetailPage = () => {
       alertMessage("error", "The book has been purchased");
       return false;
     }
-    // cek if total price > balance
-    if (total * qty > balance) {
+    // cek if total price >= balance
+    if (total * qty >= balance) {
       alertMessage("error", "Balance is not enough to make a transaction");
       return false;
     }
@@ -69,11 +70,7 @@ const DetailPage = () => {
   };
 
   if (!page[id]) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <h1 className="text-3xl font-light">Sedang memuat data...</h1>
-      </div>
-    );
+    return <LoadingContent message="Loading data .." />;
   }
 
   return (

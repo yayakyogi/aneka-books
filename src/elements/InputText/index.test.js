@@ -3,21 +3,14 @@
 /* eslint-disable testing-library/no-container */
 
 import React from "react";
-import { act, fireEvent, render } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 import InputText from "./index";
 
 describe("Testing elements text input", () => {
-  // test a email validation error and show error message
-  test("Render a email validation error and show error message", async () => {
+  // test text input
+  test("Should be can show input value", async () => {
     const onChange = jest.fn();
-    const { getByPlaceholderText, container } = render(
-      <InputText type="email" name="email" value="" onChange={onChange} />
-    );
-    await act(async () => {
-      const emailInput = getByPlaceholderText("Please type here ..");
-      fireEvent.change(emailInput, { target: { value: "invailid email" } });
-      fireEvent.blur(emailInput);
-    });
-    expect(container.querySelector("span")).toBeInTheDocument();
+    render(<InputText name="search" value="books" onChange={onChange} />);
+    expect(screen.getByDisplayValue("books")).toBeInTheDocument();
   });
 });

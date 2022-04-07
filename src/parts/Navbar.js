@@ -1,4 +1,4 @@
-import IcShoppingChart from "assets/icons/ic_shopping_cart.png";
+import IcHistory from "assets/icons/ic_history.png";
 import Button from "elements/Button";
 import InputText from "elements/InputText";
 import Title from "elements/Title";
@@ -28,7 +28,7 @@ const Navbar = (props) => {
       <div className="flex items-center">
         <Button type="link" href="/history">
           <img
-            src={IcShoppingChart}
+            src={IcHistory}
             width={props.isMobile ? 25 : 30}
             height={props.isMobile ? 25 : 30}
             alt="Icon shopping cart"

@@ -1,11 +1,12 @@
 import React from "react";
 import { formatDate } from "utils/formatDate";
 import { formatRupiah } from "utils/formatRupiah";
+import propTypes from "prop-types";
 
 const ListItem = (props) => {
   const { price, total } = props;
   return (
-    <div className="md:flex justify-between items-center border-b border-gray-200 py-4 px-2 mt-5 md:mt-0">
+    <div className="listitem md:flex justify-between items-center border-b border-gray-200 py-4 px-2 mt-5 md:mt-0">
       {/* Image and Book title */}
       <div className="w-full md:w-3/5 flex justify-start items-start">
         <img src={props.cover} className="w-20 mr-3 md:mr-5" alt="img-cover" />
@@ -48,6 +49,16 @@ const ListItem = (props) => {
       )}
     </div>
   );
+};
+
+ListItem.propTypes = {
+  cover: propTypes.string,
+  author: propTypes.oneOfType([propTypes.array, propTypes.string]),
+  title: propTypes.string,
+  isHistory: propTypes.bool,
+  price: propTypes.number,
+  total: propTypes.number,
+  date: propTypes.string,
 };
 
 export default ListItem;

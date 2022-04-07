@@ -26,7 +26,6 @@ const Bookcard = (props) => {
 Bookcard.propTypes = {
   imageUrl: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
-  author: propTypes.array,
   price: propTypes.number,
 };
 

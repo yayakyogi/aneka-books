@@ -3,16 +3,18 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import Bookcard from "./index";
+import { BrowserRouter as Router } from "react-router-dom";
 
 describe("Testing element Bookcard", () => {
-  test("Should render image, author, title and price", () => {
+  test("Should render image, title and price", () => {
     const { container } = render(
-      <Bookcard
-        imageUrl="https://cdn.gramedia.com/uploads/items/9786024246945_Laut-Bercerita__w150_hauto.jpg"
-        author="Yayak Yogi"
-        title="Title Books"
-        price={25000}
-      />
+      <Router>
+        <Bookcard
+          imageUrl="https://cdn.gramedia.com/uploads/items/9786024246945_Laut-Bercerita__w150_hauto.jpg"
+          title="Title Books"
+          price={25000}
+        />
+      </Router>
     );
 
     const bookcard = container.querySelector(".bookcard");
@@ -22,7 +24,6 @@ describe("Testing element Bookcard", () => {
       "src",
       "https://cdn.gramedia.com/uploads/items/9786024246945_Laut-Bercerita__w150_hauto.jpg"
     );
-    expect(bookcard).toHaveTextContent("Yayak Yogi");
     expect(bookcard).toHaveTextContent("Title Books");
     expect(bookcard).toHaveTextContent(25000);
   });

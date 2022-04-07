@@ -12,7 +12,7 @@ const Title = () => {
     navigate("/");
   };
   return (
-    <Button onClick={restPagination} className="hover:no-underline">
+    <Button onClick={restPagination} className="title hover:no-underline">
       <span className="md:text-2xl text-xl font-bold text-blue-700">Aneka</span>
       <span className="md:text-2xl text-xl font-bold text-gray-800">
         Books.

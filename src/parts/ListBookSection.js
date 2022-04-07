@@ -8,9 +8,14 @@ const ListBookSection = (props) => {
       ref={props.refListBookSection}
     >
       <h1 className="text-xl md:text-2xl font-normal mb-5">
-        {props.isPageSearch
-          ? `Showing searching data for "${props.search}"`
-          : "Recommendations for you"}
+        {props.isPageSearch ? (
+          <>
+            <span>Show browsing data for "</span>
+            <span className="font-semibold">{`${props.search}`}"</span>
+          </>
+        ) : (
+          "Recommendations for you"
+        )}
       </h1>
       <div className="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 grid-cols-2 gap-4">
         {props.data?.items?.map((item, index) => {

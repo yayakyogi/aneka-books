@@ -7,7 +7,7 @@ const TotalCheckout = (props) => {
   const totalPay = total + 1000;
 
   return (
-    <div className="block md:flex justify-end mt-10 border border-gray-100 p-2 rounded-sm shadow-md">
+    <div className="total-checkout block md:flex justify-end mt-10 border border-gray-100 p-2 rounded-sm shadow-md">
       <div className="w-full md:w-72 lg:w-80">
         <h1 className="font-bold text-xl mb-5">Total Checkout</h1>
         <div className="flex justify-between items-center mb-2">

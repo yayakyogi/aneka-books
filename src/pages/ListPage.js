@@ -35,7 +35,7 @@ const ListPage = () => {
   if (!page.listbook) {
     return (
       <div className="h-screen w-screen flex justify-center items-center">
-        <h1 className="text-3xl font-light">Sedang memuat data...</h1>
+        <h1 className="text-3xl font-light">Loading data...</h1>
       </div>
     );
   }

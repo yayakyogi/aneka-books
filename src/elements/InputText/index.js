@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
-import React, { useState } from "react";
 import propTypes from "prop-types";
+import React from "react";
 
 const InputText = (props) => {
   // destructuring props
