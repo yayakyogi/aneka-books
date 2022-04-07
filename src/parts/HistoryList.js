@@ -15,8 +15,8 @@ const HistoryList = (props) => {
         </h1>
       </div>
       {data.length === 0 ? (
-        <div className="flex justify-center items-center my-3 pb-3 border-b border-gray-200">
-          Data kosong
+        <div className="h-40 md:h-10 flex justify-center items-center my-3 pb-3 md:border-b border-gray-200 text-gray-500 font-thin">
+          You haven't made a book purchase yet
         </div>
       ) : (
         data?.map((payment, index) => {
