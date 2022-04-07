@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ImageSuccess from "assets/images/image-completed.png";
 import Button from "elements/Button";
+import LoadingContent from "elements/LoadingContent";
 
 const SuccessPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,13 +13,7 @@ const SuccessPage = () => {
   });
 
   if (isLoading) {
-    return (
-      <div className="h-screen w-screen flex justify-center items-center">
-        <h1 className="text-3xl font-light">
-          Transaction is being processed...
-        </h1>
-      </div>
-    );
+    return <LoadingContent message="Transaction is being processed..." />;
   }
 
   return (
