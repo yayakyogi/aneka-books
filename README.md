@@ -32,4 +32,4 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-To reset and clear all data on your localStorage you can type `http://localhost:3000/clearall` on url.
+To reset and clear all data on your localStorage you can execute with this url `http://localhost:3000/clearall`.
